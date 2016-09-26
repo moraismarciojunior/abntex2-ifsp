@@ -1,0 +1,426 @@
+%%
+%% Customizações do abnTeX2 (http://www.abntex.net.br) para o Instituto Federal de São Paulo 
+%%
+%% Customizations of abnTeX2 (http://www.abntex.net.br) for the Federal Institute of São Paulo (IFSP)
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is  Marcio Oliveira de Morais Junior, morais.marciojunior@outlook.com
+%%
+%% Further information about abnTeX2 are available on http://abntex2.googlecode.com/
+%%
+
+% -----------------------------------------------------
+% INICIO DAS CUSTOMIZACOES PARA O IFSP
+% -----------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{abntex2-ifsp}[2016/06/10 v1 AbnTeX2-IFSP]
+
+% -----------------------------------------------------
+% PACOTES UTILIZADOS
+% -----------------------------------------------------
+
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+% -----------------------------------------------------
+% SETUP DE COMANDOS
+% -----------------------------------------------------
+\providecommand{\imprimircampus}{}
+\providecommand{\imprimirnomedocampus}{}
+
+\instituicao{Instituto Federal de Educação, Ciência e Tecnologia de São Paulo}
+
+% Cria o comando \subtitulo. A norma define que o TITULO deve ser em caixa alta
+% negrito, mas o subtitulo deve ser em caixa baixa.
+%\providecommand{\imprimirsubtitulo}{}
+%\newcommand{\subtitulo}[1]{\renewcommand{\imprimirsubtitulo}{#1}}
+
+% Legendas utilizadas em Figuras / Tabelas / Etc.
+\newcommand{\foa}{\legend{Fonte: Elaborada pelo autor.}}
+\newcommand{\fad}[1]{\legend{Fonte: Adaptada de \citeonline{#1}.}}
+\newcommand{\fod}[1]{\legend{Fonte: \citeonline{#1}.}}
+\newcommand{\fodp}{\legend{Fonte: Dados da pesquisa.}}
+
+
+% Comandos utilizados para configuracao da Folha de Aprovacao
+
+% Sao aceitos ate tres convidados + orientador + coorientador
+% A forma de uso eh: \membrobanca?[SiglaInst]{Nome}. 
+% SiglaInst eh opcional, padrao eh IFSP - Caraguatatuba.
+\newcommand{\membrobancaA}{}
+\newcommand{\membrobancaB}{}
+\newcommand{\membrobancaC}{}
+
+% Data da defesa deve ser por extenso na folha de aprovacao
+\newcommand{\datadefesa}{}
+
+% Dedicatoria
+\newcommand{\textodedicatoria}{}
+\providecommand{\imprimirtextodedicatoria}{\textodedicatoria}
+
+% -----------------------------------------------------
+% DEFINE LOCAL AUTOMATICAMENTE A PARTIR DO CAMPUS
+% -----------------------------------------------------
+\local{\imprimirnomedocampus}
+
+
+% -----------------------------------------------------
+% SETUP DE BOOLEANS e OPÇÕES DO PACOTE
+% -----------------------------------------------------
+
+
+\newboolean{logovertical}
+\setboolean{logovertical}{false}
+\newboolean{logohorizontal}
+\setboolean{logohorizontal}{false}
+\newboolean{semlogo}
+\setboolean{semlogo}{true}
+\newboolean{ABNTEX2PUCMINASalgorithm}
+\setboolean{ABNTEX2PUCMINASalgorithm}{false}
+\DeclareOption{hackalgorithm}{\setboolean{ABNTEX2PUCMINASalgorithm}{true}}
+\DeclareOption{logovertical}{\setboolean{logovertical}{true} \setboolean{logohorizontal}{false} \setboolean{semlogo}{false}}
+\DeclareOption{logohorizontal}{\setboolean{logohorizontal}{true} \setboolean{logovertical}{false} \setboolean{semlogo}{false}}
+
+
+% -----------------------------------------------------
+% Câmpus
+% -----------------------------------------------------
+\DeclareOption{ARA}{\renewcommand{\imprimircampus}{araraquara} \renewcommand{\imprimirnomedocampus}{Araraquara}}
+\DeclareOption{ASI}{\renewcommand{\imprimircampus}{assis} \renewcommand{\imprimirnomedocampus}{Assís}}
+\DeclareOption{AVA}{\renewcommand{\imprimircampus}{avare} \renewcommand{\imprimirnomedocampus}{Avaré}}
+\DeclareOption{BAR}{\renewcommand{\imprimircampus}{barretos} \renewcommand{\imprimirnomedocampus}{Barretos}}
+\DeclareOption{BRG}{\renewcommand{\imprimircampus}{birigui} \renewcommand{\imprimirnomedocampus}{Biriguí}}
+\DeclareOption{BTV}{\renewcommand{\imprimircampus}{boituva} \renewcommand{\imprimirnomedocampus}{Boituva}}
+\DeclareOption{BGP}{\renewcommand{\imprimircampus}{bragancapaulista} \renewcommand{\imprimirnomedocampus}{Bragança Paulista}}
+\DeclareOption{CMP}{\renewcommand{\imprimircampus}{campinas} \renewcommand{\imprimirnomedocampus}{Campinas}}
+\DeclareOption{CAR}{\renewcommand{\imprimircampus}{caraguatatuba} \renewcommand{\imprimirnomedocampus}{Caraguatatuba}}
+\DeclareOption{CTD}{\renewcommand{\imprimircampus}{catanduva} \renewcommand{\imprimirnomedocampus}{Catanduva}}
+\DeclareOption{CBT}{\renewcommand{\imprimircampus}{cubatao} \renewcommand{\imprimirnomedocampus}{Cubatão}}
+\DeclareOption{GRU}{\renewcommand{\imprimircampus}{guaruhos} \renewcommand{\imprimirnomedocampus}{Guarulhos}}
+\DeclareOption{HOT}{\renewcommand{\imprimircampus}{hortolandia} \renewcommand{\imprimirnomedocampus}{Hortolândia}}
+\DeclareOption{ITP}{\renewcommand{\imprimircampus}{itapetininga} \renewcommand{\imprimirnomedocampus}{Itapetininga}}
+\DeclareOption{JAC}{\renewcommand{\imprimircampus}{jacarei} \renewcommand{\imprimirnomedocampus}{Jacareí}}
+\DeclareOption{MAT}{\renewcommand{\imprimircampus}{matao} \renewcommand{\imprimirnomedocampus}{Matão}}
+\DeclareOption{PRC}{\renewcommand{\imprimircampus}{piracicaba} \renewcommand{\imprimirnomedocampus}{Piracicaba}}
+\DeclareOption{PRE}{\renewcommand{\imprimircampus}{presidenteepitacio} \renewcommand{\imprimirnomedocampus}{Presidente Epitácio}}
+\DeclareOption{REG}{\renewcommand{\imprimircampus}{registro} \renewcommand{\imprimirnomedocampus}{Registro}}
+\DeclareOption{SLT}{\renewcommand{\imprimircampus}{salto} \renewcommand{\imprimirnomedocampus}{Salto}}
+\DeclareOption{SCR}{\renewcommand{\imprimircampus}{saocarlos} \renewcommand{\imprimirnomedocampus}{São Carlos}}
+\DeclareOption{SJB}{\renewcommand{\imprimircampus}{saojoaodaboavista} \renewcommand{\imprimirnomedocampus}{São João da Boa Vista}}
+\DeclareOption{SJC}{\renewcommand{\imprimircampus}{saojosedoscampos} \renewcommand{\imprimirnomedocampus}{São José dos Campos}}
+\DeclareOption{SPO}{\renewcommand{\imprimircampus}{saopaulo} \renewcommand{\imprimirnomedocampus}{São Paulo}}
+\DeclareOption{SRQ}{\renewcommand{\imprimircampus}{saoroque} \renewcommand{\imprimirnomedocampus}{São Roque}}
+\DeclareOption{SRT}{\renewcommand{\imprimircampus}{sertaozinho} \renewcommand{\imprimirnomedocampus}{Sertãozinho}}
+\DeclareOption{SCB}{\renewcommand{\imprimircampus}{sorocaba} \renewcommand{\imprimirnomedocampus}{Sorocaba}}
+\DeclareOption{SZN}{\renewcommand{\imprimircampus}{suzano} \renewcommand{\imprimirnomedocampus}{Suzano}}
+\DeclareOption{VPG}{\renewcommand{\imprimircampus}{votuporanga} \renewcommand{\imprimirnomedocampus}{Votuporanga}}
+\ProcessOptions\relax
+
+
+
+% posicionar os floats
+\usepackage[bottom]{footmisc}
+% http://tex.stackexchange.com/questions/62720/vertical-space-after-algorithm
+% \setlength{\textfloatsep}{1.241\onelineskip}% Remove \textfloatsep
+% \setlength{\floatsep}{1.241\onelineskip}% Remove \textfloatsep
+% \setlength{\intextsep}{1.241\onelineskip}% Remove \textfloatsep
+\setlength{\textfloatsep}{1\baselineskip}% Remove \textfloatsep
+\setlength{\floatsep}{1\baselineskip}% Remove \textfloatsep
+\setlength{\intextsep}{1\baselineskip}% Remove \textfloatsep
+
+
+% -----------------------------------------------------------------------------
+% CONFIGURACAO DO SUMARIO
+% -----------------------------------------------------------------------------
+% Modifica o espaçamento no sumário
+% Nao ha espacos, exceto para as entradas de capitulos
+\setlength{\cftbeforeparagraphskip}{0pt}
+\setlength{\cftbeforesubsectionskip}{0pt}
+\setlength{\cftbeforesectionskip}{0pt}
+\setlength{\cftbeforesubsubsectionskip}{0pt}
+\setlength{\cftbeforechapterskip}{\onelineskip}
+
+% Modifica a formatacao dos textos
+
+% Secao Primaria (Chapter): Caixa alta, Negrito, tamanho 12 
+\makeatletter
+\settocpreprocessor{chapter}{
+\let\tempf@rtoc\f@rtoc
+\def\f@rtoc{
+\texorpdfstring{\bfseries\MakeTextUppercase{\tempf@rtoc}}{\tempf@rtoc}}
+}
+\makeatother
+
+
+% Secao secundaria (Section) Caixa baixa, Negrito, tamanho 12
+\renewcommand*{\cftsectionfont}{\bfseries}
+
+% Secao terciaria (Subsection) Caixa baixa, Negrito, tamanho 12
+\renewcommand*{\cftsubsectionfont}{\bfseries}
+% Secao quaternaria (Subsubsection) Caixa baixa, Negrito, italico, tamanho 12
+\renewcommand*{\cftsubsubsectionfont}{\bfseries}
+
+
+% -----------------------------------------------------------------------------
+% FORMATACAO DAS PAGINAS
+% -----------------------------------------------------------------------------
+% Definicao das margens e espaçamentos
+\setlrmarginsandblock{3cm}{2cm}{*} % externa / interna
+\setulmarginsandblock{3cm}{2cm}{*} % superior / inferior
+\checkandfixthelayout
+
+% Recuo do paragrafo
+\setlength{\parindent}{1.25cm} % normativo citatanto o valor de 1,25 qto 1,5cm
+% sem espaco entre os paragrafos
+\setlength{\parskip}{0cm}
+
+% Espacamentos nos titulos:
+% chapter
+\setlength{\beforechapskip}{-\onelineskip} %com 0 nao funcionou
+\setlength{\afterchapskip}{\onelineskip} % antes do titulo de capitulo
+
+% section
+\setbeforesecskip{\onelineskip}
+\setaftersecskip{\onelineskip}
+
+% subsection
+\setbeforesubsecskip{\onelineskip}
+\setaftersubsecskip{\onelineskip}
+
+% subsubsection
+\setbeforesubsubsecskip{\onelineskip}
+\setaftersubsubsecskip{\onelineskip}
+
+
+% Fontes de títulos no documento
+% Capitulo  Negrito + MakeUpperCase (via chapter=TITLE)
+\renewcommand{\ABNTEXchapterfont}{\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\setboolean{ABNTEXupperchapter}{true}
+
+% Section Negrito
+\renewcommand{\ABNTEXsectionfont}{\bfseries}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+
+% Subsection Negrito
+\renewcommand{\ABNTEXsubsectionfont}{\bfseries}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+% Subsubsectioin Negrito 
+\renewcommand{\ABNTEXsubsubsectionfont}{\bfseries}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+
+% -----------------------------------------------------------------------------
+% Padronizacao da Bibliografia (BIBTEX)
+% -----------------------------------------------------------------------------
+
+% ---
+% Pacotes de citações
+% ---
+
+% Padrao de citacao alfabetico e com destaque em negrito
+\usepackage[alf,abnt-emphasize=bf]{abntex2cite}
+
+
+% -----------------------------------------------------------------------------
+% CAPA
+% -----------------------------------------------------------------------------
+%\makeatletter
+\renewcommand{\imprimircapa}{%
+\begin{capa}
+\ifthenelse{\boolean{logovertical}}{
+\begin{flushleft}
+\begin{tabular}{L{3cm}C{12cm}}
+\includegraphics[scale=0.4]{\imprimircampus vertical.pdf}&  {\ABNTEXchapterfont\MakeUppercase\imprimirinstituicao}
+\end{tabular}
+\vspace{0.3cm}
+\end{flushleft}
+\center
+}
+{
+\ifthenelse{\boolean{logohorizontal}}{
+\begin{flushleft}
+\begin{tabular}{L{5cm}C{10cm}}
+\includegraphics[scale=0.4]{\imprimircampus horizontal.pdf}&  {\ABNTEXchapterfont\MakeUppercase\imprimirinstituicao} 
+\end{tabular}
+\end{flushleft}
+\vspace{2cm}
+\center
+}
+{
+\center 
+\ABNTEXchapterfont\MakeUppercase\imprimirinstituicao
+\vspace{2cm}
+}
+}
+\par
+{\ABNTEXchapterfont\imprimirautor}%
+\vspace*{6cm}%
+\par%
+{\ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo}
+\par%
+\vspace*{\fill}%
+\par%
+{\imprimirlocal}%
+\par%
+{\imprimirdata}%
+\end{capa}%
+}
+\makeatother
+
+
+
+% -----------------------------------------------------------------------------
+% FOLHA DE ROSTO
+% -----------------------------------------------------------------------------
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+\begin{center}%
+{\ABNTEXchapterfont\MakeUppercase\imprimirautor}%
+\vspace*{4cm}%
+\par%
+\vspace*{\fill}\vspace*{\fill}%
+{\ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo}
+\vspace*{\fill}%
+\par%
+\abntex@ifnotempty{\imprimirpreambulo}{%
+\hspace*{7cm}%
+\begin{minipage}{.5\textwidth}%
+\SingleSpacing%
+\imprimirpreambulo%
+\end{minipage}%
+%\vspace*{\fill}%
+}%
+%\vspace*{4cm}%
+\par%
+{\hspace*{7cm}%
+\begin{minipage}{.5\textwidth}%
+\SingleSpacing%
+\imprimirorientadorRotulo~\imprimirorientador%
+\par%
+\end{minipage}%
+}
+\abntex@ifnotempty{\imprimircoorientador}{%
+{\hspace*{7cm}\begin{minipage}{.5\textwidth}%
+\SingleSpacing%
+\imprimircoorientadorRotulo~\imprimircoorientador%
+\end{minipage}%
+}%
+}%
+\vspace*{6cm}
+\vspace*{\fill}%
+\par%
+{\imprimirlocal}%
+\par%
+{\imprimirdata}%
+\end{center}%
+}%
+\makeatother
+
+
+% -----------------------------------------------------
+% FOLHA DE APROVACAO
+% -----------------------------------------------------
+\setlength{\ABNTEXsignwidth}{12cm}
+\newcommand{\imprimirsiglaifspcampus}{IFSP - \imprimirnomedocampus
+}
+
+\makeatletter
+\providecommand{\imprimirdatadefesa}{}
+\renewcommand{\datadefesa}[1]{\renewcommand{\imprimirdatadefesa}{#1}}
+
+\providecommand{\imprimirmembrobancaA}{}
+\providecommand{\imprimirmembrobancaAinst}{}
+\renewcommand{\membrobancaA}[2][\imprimirsiglaifspcampus]{\renewcommand{\imprimirmembrobancaA}{#2}\renewcommand{\imprimirmembrobancaAinst}{#1}}
+
+\providecommand{\imprimirmembrobancaB}{}
+\providecommand{\imprimirmembrobancaBinst}{}
+\renewcommand{\membrobancaB}[2][\imprimirsiglaifspcampus]{\renewcommand{\imprimirmembrobancaB}{#2}\renewcommand{\imprimirmembrobancaBinst}{#1}}
+
+\providecommand{\imprimirmembrobancaC}{}
+\providecommand{\imprimirmembrobancaCinst}{}
+\renewcommand{\membrobancaC}[2][\imprimirsiglaifspcampus]{\renewcommand{\imprimirmembrobancaC}{#2}\renewcommand{\imprimirmembrobancaCinst}{#1}}
+
+\newcommand{\imprimirmeOrientadorinst}{\imprimirsiglaifspcampus}
+\newcommand{\imprimirmeCoorientadorinst}{\imprimirsiglaifspcampus}
+
+\newcommand{\imprimefolhadeaprovacao}{
+\begin{folhadeaprovacao}
+\begin{center}
+{\ABNTEXchapterfont\large\imprimirautor}\\
+\vspace*{\fill}\vspace*{\fill}
+{\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+\vspace*{\fill}
+
+\hspace{.45\textwidth}
+\begin{minipage}{.5\textwidth}
+\imprimirpreambulo
+\end{minipage}%
+\vspace*{\fill}
+\end{center}
+
+\noindent
+Trabalho aprovado. \imprimirlocal, \imprimirdatadefesa:
+
+\begin{center}
+\assinatura{\imprimirorientador~(Orientador) -- \imprimirmeOrientadorinst}%
+%\abntex@ifnotempty{\imprimircoorientador}{%
+%\assinatura{\imprimircoorientador~(Coorientador) -- \imprimirmeCoorientadorinst}%
+%}%
+\assinatura{\imprimirmembrobancaA ~-- \imprimirmembrobancaAinst}%
+\abntex@ifnotempty{\imprimirmembrobancaB}{%
+\assinatura{\imprimirmembrobancaB ~-- \imprimirmembrobancaBinst}%
+}%
+\abntex@ifnotempty{\imprimirmembrobancaC}{%
+\assinatura{\imprimirmembrobancaC ~-- \imprimirmembrobancaCinst}%
+}%
+\vspace*{\fill}
+{\large\imprimirlocal}
+\par
+{\large\imprimirdata}
+\end{center}
+\end{folhadeaprovacao}
+}
+\makeatother
+
+
+% ----------------------------------------------------------
+% Dedicatória
+% ----------------------------------------------------------
+%\newcommand{\imprimirdedicatoria}{
+%\begin{dedicatoria}
+%\vspace*{\fill}
+%\hspace{.24\textwidth}
+%\begin{minipage}{.7\textwidth}
+%\flushright
+%\noindent
+%asdfasdfasdfa
+%\end{minipage}
+%\end{dedicatoria}
+%}
+%\makeatother
+
+% ---
+% FIM DAS CUSTOMIZACOES PARA O IFSP
+% ---
