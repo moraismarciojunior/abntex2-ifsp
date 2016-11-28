@@ -1,0 +1,441 @@
+\PassOptionsToPackage{inline,shortlabels}{enumitem}
+\documentclass[12pt, oneside, a4paper, english, brazil]{abntex2}
+
+\usepackage[logohorizontal, CAR]{abntex2-ifsp} 
+% ---
+		
+% ---
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{xpatch}
+
+\usepackage{enumerate} 
+\usepackage{graphicx}
+\usepackage{tikz}
+
+
+
+\providecommand{\abs}[1]{\left\vert #1 \right\vert}
+\providecommand{\p}[1]{\left( #1 \right)}
+\providecommand{\chaves}[1]{\left\{ #1 \right\}}
+\providecommand{\colchetes}[1]{\left[ #1 \right]}
+\providecommand{\Endo}[1]{\text{End}\left( #1 \right)}
+\providecommand{\Endor}[1]{\text{End}_{\mathbb{R}}\left( #1 \right)}
+
+
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\Rdois}{\mathbb{R}^2}
+\providecommand{\Rtres}{\mathbb{R}^3}
+\newcommand{\C}{\mathbb{C}}
+%\newcommand{\bs}{\backslash}
+\newcommand{\vep}{\varepsilon}
+\providecommand{\rad}{\text{ rad}}
+
+\providecommand{\ac}{Álgebras de Clifford}
+\providecommand{\Cl}{\mathcal{C}\ell}
+\providecommand{\Cldois}{\mathcal{C}\ell_2}
+\providecommand{\Cldoispar}{\mathcal{C}\ell_2^{+}}
+\providecommand{\Cldoisimpar}{\mathcal{C}\ell_2^{-}}
+
+\providecommand{\pref}[1]{(\ref{#1})}
+\providecommand{\bref}[1]{[\ref{#1}]}
+
+\renewcommand{\vec}{\overrightarrow}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% ---
+
+% ---
+% Definições, Teoremas, Corolários ...
+% ---
+\providecommand{\definitionref}[1]{[Definição \ref{#1}]}
+\providecommand{\propositionref}[1]{[Proposição \ref{#1}]}
+\providecommand{\propertyref}[1]{[Propriedade \ref{#1}]}
+\providecommand{\observationref}[1]{[Observação \ref{#1}]}
+\providecommand{\corollaryref}[1]{[Corolário \ref{#1}]}
+\providecommand{\lemmaref}[1]{[Lema \ref{#1}]}
+\providecommand{\theoremref}[1]{[Teorema \ref{#1}]}
+\providecommand{\conjectureref}[1]{[Conjectura \ref{#1}]}
+\providecommand{\exempleref}[1]{[Exemplo \ref{#1}]}
+\providecommand{\notationref}[1]{[Notação \ref{#1}]}
+
+\xpatchcmd{\proof}{\hskip\labelsep}{\hskip6.5\labelsep}{}{}
+
+\newtheoremstyle{normal}% name
+{}% Space above1
+{}% Space below1
+{}% Body font
+{\parindent}% Indent amount2
+{\bfseries}% Theorem head font
+{.}% Punctuation after theorem head
+{ }% Space after theorem head3
+{}% Theorem head spec (can be left empty, meaning ‘normal’)
+
+\newtheoremstyle{observacao} 
+{}% Space above1
+{}% Space below1
+{}% Body font
+{\parindent}% Indent amount2
+{\bfseries}% Theorem head font
+{:}% Punctuation after theorem head
+{ }% Space after theorem head3
+{}% Theorem head spec (can be left empty, meaning ‘normal’)
+
+
+\newcounter{geral}
+
+\theoremstyle{normal}
+\newtheorem{definition}[geral]{Definição}
+\newtheorem{proposition}[geral]{Proposição}
+\newtheorem{property}[geral]{Propriedade}
+\newtheorem{corollary}[geral]{Corolário}
+\newtheorem{lemma}[geral]{Lema}
+\newtheorem{theorem}[geral]{Teorema}
+\newtheorem{conjecture}[geral]{Conjectura}
+\newtheorem{notation}[geral]{Notação}
+\newtheorem{vocabulary}[geral]{Vocabulário}
+
+\theoremstyle{observacao}
+\newtheorem*{obs}{Observação}
+
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{As Álgebras de Clifford}
+\autor{Marcio Oliveira de Morais Junior}
+%\local{Brasil}
+\data{2016}
+\datadefesa{\today}
+\orientador{Prof. Me. Márcio André Traesel}
+%\coorientador{Um coorientador}
+\membrobancaA{Prof. Me. }
+\membrobancaB{Prof. Me. }
+
+
+\tipotrabalho{Trabalho de Conclusão de Curso}
+\preambulo{Monografia submetida ao Instituto Federal de Educação, Ciência e Tecnologia de São Paulo -- Câmpus Caraguatatuba como parte dos requisitos para obtenção do grau de Licenciado em Matemática.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+%pagebackref=true,
+pdftitle={\@title}, 
+pdfauthor={\@author},
+pdfsubject={\imprimirpreambulo},
+pdfcreator={LaTeX with abnTeX2},
+pdfkeywords={Álgebras de Clifford}{Álgebras Geométricas}{Matemática Pura}{Matemática Aplicada}, 
+colorlinks=false,       		% false: boxed links; true: colored links
+linkcolor=blue,          	% color of internal links
+citecolor=blue,        		% color of links to bibliography
+filecolor=magenta,      	% color of file links
+urlcolor=blue,
+bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----------------------------------------------------------
+% Início do documento
+% ----------------------------------------------------------
+\begin{document}
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+% ----------------------------------------------------------
+% Capa
+% ----------------------------------------------------------
+\imprimircapa
+
+
+% ----------------------------------------------------------
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ----------------------------------------------------------
+\imprimirfolhaderosto*
+
+
+% ----------------------------------------------------------
+% Inserir a ficha bibliografica
+% ----------------------------------------------------------
+
+% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
+% Porém, provavelmente a biblioteca da seu câmpus lhe fornecerá um PDF
+% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+% o conteúdo de implementação deste arquivo pelo comando abaixo:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fichacatalografica.pdf}
+% \end{fichacatalografica}
+\begin{fichacatalografica}
+\vspace*{\fill}					% Posição vertical
+\hrule							% Linha horizontal
+\begin{center}					% Minipage Centralizado
+\begin{minipage}[c]{12.5cm}		% Largura
+
+\imprimirautor
+
+\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+\imprimirlocal, \imprimirdata-
+
+\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
+
+\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+
+\hspace{0.5cm}
+\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+\imprimirdata.}\\
+
+\hspace{0.5cm}
+1. Palavra-chave1.
+2. Palavra-chave2.
+I. Orientador.
+II. Universidade xxx.
+III. Faculdade de xxx.
+IV. Título\\ 			
+	
+\hspace{8.75cm} CDU 02:141:005.7\\
+	
+\end{minipage}
+\end{center}
+\hrule
+\end{fichacatalografica}
+
+
+% ----------------------------------------------------------
+% Inserir errata
+% ----------------------------------------------------------
+%\begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%
+%\vspace{\onelineskip}
+%
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{p{1.4cm}|p{1cm}|p{3cm}|p{3cm}}
+%\hline
+%\textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%\hline
+%1 & 10 & auto-conclavo & autoconclavo\\
+%\hline
+%\end{tabular}
+%\end{table}
+%\end{errata}
+
+
+% ----------------------------------------------------------
+% Inserir folha de aprovação
+% ----------------------------------------------------------
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \includepdf{folhadeaprovacao_final.pdf}
+%
+% Sugestão: Imprima uma cópia desta página e não encaderne-a, assim fica 
+% mais fácil escaneá-la para gerar um pdf
+
+\imprimefolhadeaprovacao
+
+
+% ----------------------------------------------------------
+% Dedicatória
+% ----------------------------------------------------------
+\begin{dedicatoria}
+\vspace*{\fill}
+\hspace{.24\textwidth}
+\begin{minipage}{.7\textwidth}
+\flushright
+\noindent
+\textit{Àqueles que um dia viajaram e deslumbraram \\
+a beleza matemática.}
+\end{minipage}
+\end{dedicatoria}
+%\imprimirdedicatoria
+
+% ----------------------------------------------------------
+% Agradecimentos
+% ----------------------------------------------------------
+\begin{agradecimentos}
+
+\end{agradecimentos}
+
+
+% ----------------------------------------------------------
+% Epígrafe
+% ----------------------------------------------------------
+\begin{epigrafe}
+\vspace*{\fill}
+\hspace{.24\textwidth}
+\begin{minipage}{.7\textwidth}
+\flushright
+\noindent
+\textit{``Digno és, Jeová, nosso Deus, de receber a glória, a honra e o poder, porque criaste todas as coisas, e por tua vontade elas vieram à existência e foram criadas.''\\
+(Apocalipse 4: 11)}
+\end{minipage}
+\end{epigrafe}
+
+
+% ----------------------------------------------------------
+% RESUMOS
+% ----------------------------------------------------------
+
+% resumo em português
+\begin{resumo}
+
+
+\vspace{\onelineskip}
+
+\noindent
+\textbf{Palavras-chaves}: Álgebras de Clifford. Álgebras Geométricas. Produto Exterior.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+\begin{otherlanguage*}{english}
+This is the english abstract.
+
+\vspace{\onelineskip}
+ 
+\noindent 
+\textbf{Key-words}: Clifford Algebras. Geometric Algebras. Exterior Product.
+\end{otherlanguage*}
+\end{resumo}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\newpage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\newpage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\begin{siglas}
+\item[i. e.] \textit{id est} (isto é)
+\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+\begin{simbolos}
+\item[$\Cldois$] Álgebra de Clifford
+\item[$\Cldoispar$] Parte par de $\Cldois$
+\item[$\Cldoisimpar$] Parte ímpar de $\Cldois$
+\item[$\Cl_n$] 
+\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+\pagestyle{simple}
+
+\chapter{Introdução}
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ----------------------------------------------------------
+% Conclusão
+% ----------------------------------------------------------
+\chapter{Conclusão}
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{ref-algebrasdeclifford}
+
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+%\begin{apendicesenv}
+%\chapter{Quisque libero justo}
+%\lipsum[50]
+%
+%\chapter{Nullam elementum urna vel imperdiet sodales}
+%\lipsum[55-57]
+%\end{apendicesenv}
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+%\begin{anexosenv}
+%
+%\chapter{Morbi ultrices rutrum lorem.}
+%\lipsum[30]
+%
+%\chapter{Fusce facilisis lacinia dui}
+%\lipsum[32]
+%
+%\end{anexosenv}
+
+% ----------------------------------------------------------
+% FIM DO DOCUMENTO
+% ----------------------------------------------------------
+\end{document}

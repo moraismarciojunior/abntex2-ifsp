@@ -1,7 +1,5 @@
 %%
-%% Customizações do abnTeX2 (http://www.abntex.net.br) para o Instituto Federal de São Paulo 
-%%
-%% Customizations of abnTeX2 (http://www.abntex.net.br) for the Federal Institute of São Paulo (IFSP)
+%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o Instituto Federal de São Paulo 
 %%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -150,6 +148,8 @@
 \setlength{\intextsep}{1\baselineskip}% Remove \textfloatsep
 
 
+
+
 % -----------------------------------------------------------------------------
 % CONFIGURACAO DO SUMARIO
 % -----------------------------------------------------------------------------
@@ -160,6 +160,11 @@
 \setlength{\cftbeforesectionskip}{0pt}
 \setlength{\cftbeforesubsubsectionskip}{0pt}
 \setlength{\cftbeforechapterskip}{\onelineskip}
+
+% Alteração da indentação dos itens do sumário
+\cftsetindents{section}{0pt}{65pt}
+\cftsetindents{subsection}{0pt}{40pt}
+\cftsetindents{subsubsection}{0pt}{40pt}
 
 % Modifica a formatacao dos textos
 
@@ -173,14 +178,14 @@
 \makeatother
 
 
-% Secao secundaria (Section) Caixa baixa, Negrito, tamanho 12
-\renewcommand*{\cftsectionfont}{\bfseries}
+% Secao secundaria (Section) Caixa baixa, tamanho 12
+\renewcommand*{\cftsectionfont}{\normalfont}
 
 % Secao terciaria (Subsection) Caixa baixa, Negrito, tamanho 12
-\renewcommand*{\cftsubsectionfont}{\bfseries}
-% Secao quaternaria (Subsubsection) Caixa baixa, Negrito, italico, tamanho 12
-\renewcommand*{\cftsubsubsectionfont}{\bfseries}
+\renewcommand*{\cftsubsectionfont}{\normalfont}
 
+% Secao quaternaria (Subsubsection) Caixa baixa, Negrito, italico, tamanho 12
+\renewcommand*{\cftsubsubsectionfont}{\normalfont}
 
 % -----------------------------------------------------------------------------
 % FORMATACAO DAS PAGINAS
@@ -329,6 +334,7 @@
 }%
 }%
 \vspace*{6cm}
+\par
 \vspace*{\fill}%
 \par%
 {\imprimirlocal}%
@@ -381,7 +387,7 @@
 \end{center}
 
 \noindent
-Trabalho aprovado. \imprimirlocal, \imprimirdatadefesa:
+Trabalho \rule{3cm}{0.5pt}. \imprimirlocal, \imprimirdatadefesa:
 
 \begin{center}
 \assinatura{\imprimirorientador~(Orientador) -- \imprimirmeOrientadorinst}%
@@ -395,10 +401,12 @@ Trabalho aprovado. \imprimirlocal, \imprimirdatadefesa:
 \abntex@ifnotempty{\imprimirmembrobancaC}{%
 \assinatura{\imprimirmembrobancaC ~-- \imprimirmembrobancaCinst}%
 }%
-\vspace*{\fill}
-{\large\imprimirlocal}
 \par
-{\large\imprimirdata}
+\vspace*{\fill}
+\par
+{\imprimirlocal}
+\par
+{\imprimirdata}
 \end{center}
 \end{folhadeaprovacao}
 }
